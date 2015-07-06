@@ -20,7 +20,7 @@ sub write_modules_to_dir {
     $dir //= $self->written_modules_dir;
     unless (defined $dir) {
         require File::Temp;
-        $dir = File::Temp::tempdir(CLEANUP => 1);
+        $dir = File::Temp::tempdir(CLEANUP => ($ENV{DEBUG} ? 0:1));
     }
 
     $self->log_debug(["writing built modules to dir %s ...", $dir]);
@@ -75,6 +75,11 @@ Write built modules to disk at the specified directory (or, to a temporary
 directory if C<$dir> is not specified).
 
 To find out the directory being used, use the C<written_modules_dir> attribute.
+
+If a temporary directory is automatically selected, it will automatically be
+cleaned up at the end of build (created using L<File::Temp>'s C<tempdir> with
+C<CLEANUP> set to 1) unless the environment C<DEBUG> is set to true, in which
+case the temporary directory will not be automatically cleaned up.
 
 By default will only do this once during build, and subsequent call to
 C<write_modules_to_dir()> will be a no-op. But if you set C<$force> to 1, will
