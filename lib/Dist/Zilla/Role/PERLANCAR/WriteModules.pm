@@ -20,7 +20,7 @@ sub write_modules_to_dir {
     $dir //= $self->written_modules_dir;
     unless (defined $dir) {
         require File::Temp;
-        $dir = File::Temp::tempdir(CLEANUP => ($ENV{DEBUG} ? 0:1));
+        $dir = File::Temp::tempdir(CLEANUP => ($ENV{DEBUG_KEEP_TEMPDIR} ? 0:1));
     }
 
     $self->log_debug(["writing built modules to dir %s ...", $dir]);
@@ -84,6 +84,11 @@ case the temporary directory will not be automatically cleaned up.
 By default will only do this once during build, and subsequent call to
 C<write_modules_to_dir()> will be a no-op. But if you set C<$force> to 1, will
 write modules to disk even if it has been done previously during the same build.
+
+
+=head1 ENVIRONMENT
+
+=head2 DEBUG_KEEP_TEMPDIR => bool
 
 
 =head1 SEE ALSO
