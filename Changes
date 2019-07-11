@@ -1,9 +1,9 @@
-0.02    2015-07-27 (PERLANCAR)
+0.02    2015-07-27  Released-By: PERLANCAR
 
 	- Observe DEBUG_KEEP_TEMPDIR instead of DEBUG to keep tempdir (also
 	  observed by App::fsql, App::depak, App::perlmv).
 
 
-0.01    2015-07-06 (PERLANCAR)
+0.01    2015-07-06  Released-By: PERLANCAR
 
         - First release.
